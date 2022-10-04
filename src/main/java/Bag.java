@@ -4,8 +4,15 @@
  * the TODOs we have left you. You may find the readings in chapter
  * 1. Introduction to Java helpful.
  */
+import java.util.Arrays;
 
 public abstract class Bag {
+    private String color;
+    private int numberOfContents;
+    private int capacity;
+    private String[] contents;
+
+
     /*
      * TODO: Create the following private instance variables
      *       - a String named color
@@ -13,9 +20,12 @@ public abstract class Bag {
      *       - an int named capacity
      *       - an array of Strings named contents
      */
-
-
-
+    public Bag(String color, int capacity) {
+        this.color = color;
+        this.capacity = capacity;
+        this.numberOfContents = 0;
+        this.contents = new String[0];
+    }
 
     /*
      * TODO: Create a constructor that takes two arguments:
@@ -27,9 +37,17 @@ public abstract class Bag {
      * its contents.)
      */
 
+    public String getColor() {
+        return color;
+    }
 
+    public int getCapacity() {
+        return capacity;
+    }
 
-
+    public int getNumberOfContents() {
+        return numberOfContents;
+    }
     /*
      * TODO: Create a variety of 'getter' functions.
      *       These should be named:
@@ -37,17 +55,14 @@ public abstract class Bag {
      *           - getNumberOfContents
      *           - getCapacity
      */
-
-
-
+    public void setColor(String Color){
+        this.color = Color;
+    }
 
     /*
      * TODO: Create a setter function called setColor which sets the
      *       color of this bag to the given color.
      */
-
-
-
 
 
     /*
@@ -60,11 +75,32 @@ public abstract class Bag {
      *       This method should return true if the item was added
      *       and false otherwise.
      */
+    public boolean addItem(String item){
 
+   if (this.numberOfContents < this.capacity) {
+       this.numberOfContents = this.numberOfContents + 1;
+       String[] newArr = Arrays.copyOf(this.contents, this.numberOfContents);
+       newArr[this.numberOfContents-1] = item;
+       this.contents = newArr;
+       return true;
+   }else { return false;
+   }
+   }
 
+   public String popItem(){
+        if (this.getNumberOfContents() == 0){
+            return null;} else {
+            String[] arr = new String[this.contents.length-1];
+            for (int i = 0; i < this.contents.length-1; i++){
+                arr[i] = this.contents[i];}
 
+            String last = this.contents[this.contents.length-1];
+            this.contents = arr;
+            this.numberOfContents = this.numberOfContents-1;
+            return last;
 
-
+        }
+   }
     /**
      * TODO: Create a method called popItem that returns a String.
      *       The string should be the last item added to this Bag
@@ -87,6 +123,7 @@ public abstract class Bag {
      */
     public void increaseCapacity(int n) {
         // TODO: Implement this method.
+        this.capacity = this.capacity + n;
 
     }
 

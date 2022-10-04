@@ -8,7 +8,7 @@
  */
 public class HandBag extends Bag{
 
-    /**
+/**
      * Creates a new HandBag with the given color and
      * capacity.
      *
@@ -28,6 +28,7 @@ public class HandBag extends Bag{
      */
     @Override
     public void enhance() {
+        super.increaseCapacity(1);
         /* TODO: Implement this method.
          *       You may want to use the increaseCapacity() method that was
          *       implemented in Bag.
